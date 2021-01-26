@@ -1,12 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Widget = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
   border: 2px solid ${({ theme }) => theme.colors.primaryLight};
-  background-color: ${({ theme }) => {
-    return theme.colors.primaryDark;
-  }};
+  background-color: ${({ theme }) => theme.colors.primaryDark};
   border-radius: 4px;
   overflow: hidden;
 
