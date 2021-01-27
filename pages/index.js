@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
@@ -10,12 +9,6 @@ import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.text};
-  font-weight: bold;
-`;
-
 export default function Home() {
   const [name, setName] = useState('');
   const router = useRouter();
@@ -24,7 +17,6 @@ export default function Home() {
     <QuizBackground backgroundImage={db.bg}>
 
       <QuizContainer>
-        <Title>Quiz do Inter</Title>
         <Widget>
           <Widget.Header>
             <h1>{db.title}</h1>

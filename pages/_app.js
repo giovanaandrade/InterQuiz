@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
     // Deixa branco no começo
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${({ theme }) => theme.colors.text};
   }
   html, body {
     min-height: 100vh;

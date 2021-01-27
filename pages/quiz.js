@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import ClipLoader from 'react-spinners/ClipLoader';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
-import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizContainer from '../src/components/QuizContainer';
 import Button from '../src/components/Button';
 
 function LoadingWidget() {
   return (
+
     <Widget>
       <Widget.Header>
         Carregando...
       </Widget.Header>
-
       <Widget.Content>
-        [Desafio do Loading]
+        <Widget.Loading>
+          <ClipLoader color={db.theme.colors} size={50} />
+        </Widget.Loading>
       </Widget.Content>
     </Widget>
   );
@@ -120,7 +122,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 1 * 2000);
   // nasce === didMount
   }, []);
 
@@ -136,7 +138,6 @@ export default function QuizPage() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
-        <QuizLogo />
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
             question={question}
