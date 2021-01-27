@@ -42,6 +42,7 @@ export default function App({ Component, pageProps }) {
         <title>InterQuiz - um quiz sobre o Sport Club Internacional</title>
         <meta name="title" content="InterQuiz - um quiz sobre o Sport Club Internacional" />
         <meta name="description" content="Esse quiz foi criado durante a Imersão React da Alura" />
+        <link rel="icon" href="/favicon.svg" />
 
         {/* <!-- Open Graph / Facebook --> */}
         <meta property="og:type" content="website" />

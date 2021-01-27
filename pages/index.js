@@ -6,21 +6,14 @@ import Widget from '../src/components/Widget';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
+import Input from '../src/components/Input';
+import Button from '../src/components/Button';
+import QuizContainer from '../src/components/QuizContainer';
 
 const Title = styled.h1`
   font-size: 50px;
   color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
-`;
-
-export const QuizContainer = styled.div`
-  width: 100%;
-  padding-right: 10%;
-  padding-left: 45%;
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
 `;
 
 export default function Home() {
@@ -42,15 +35,15 @@ export default function Home() {
               router.push(`/quiz?name=${name}`);
             }}
             >
-              <input
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+              <Input
+                name="nomeDoUsuario"
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Escreva seu nome"
+                value={name}
               />
-              <button type="submit" disabled={name.length === 0}>
+              <Button type="submit" disabled={name.length === 0}>
                 Começar
-              </button>
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
