@@ -2,7 +2,6 @@
     "bg": "/images/logointer.png",
     "title": "InterQuiz",
     "description": "Teste os seus conhecimentos sobre o Sport Club Internacional",
-    "loading": "https://media.giphy.com/media/SX6AulWgQ1ZK7jhUG7/giphy-downsized-large.gif",
     "questions": [
     {
     "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
