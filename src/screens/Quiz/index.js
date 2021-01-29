@@ -1,12 +1,17 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ClipLoader from 'react-spinners/ClipLoader';
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import Button from '../src/components/Button';
-import AlternativesForm from '../src/components/AlternativesForm';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import CheckIcon from '@material-ui/icons/Check';
+import ClearIcon from '@material-ui/icons/Clear';
+import db from '../../../db.json';
+import Widget from '../../components/Widget';
+import QuizBackground from '../../components/QuizBackground';
+import QuizContainer from '../../components/QuizContainer';
+import Button from '../../components/Button';
+import AlternativesForm from '../../components/AlternativesForm';
 
 function LoadingWidget() {
   return (
@@ -56,8 +61,8 @@ function ResultWidget({ results }) {
                 questão:
                 {' '}
                 {result === true
-                  ? 'Acertou'
-                  : 'Errou'}
+                  ? <CheckIcon />
+                  : <ClearIcon />}
               </p>
             </li>
           ))}
@@ -112,8 +117,8 @@ function QuestionWidget({
         </p>
 
         <AlternativesForm
-          onSubmit={(infosDoEvento) => {
-            infosDoEvento.preventDefault();
+          onSubmit={(e) => {
+            e.preventDefault();
             setIsQuestionSubmited(true);
             setTimeout(() => {
               addResult(isCorrect);
@@ -153,8 +158,20 @@ function QuestionWidget({
           <Button type="submit" disabled={!hasAlternativeSelected}>
             Confirmar
           </Button>
-          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+          {isQuestionSubmited && isCorrect && (
+          <p>
+            Você acertou!
+            <br />
+            <InsertEmoticonIcon />
+          </p>
+          )}
+          {isQuestionSubmited && !isCorrect && (
+          <p>
+            Você errou!
+            <br />
+            <SentimentVeryDissatisfiedIcon />
+          </p>
+          )}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -175,13 +192,14 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
-export default function QuizPage() {
+export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
-  const totalQuestions = db.questions.length;
+  const totalQuestions = externalQuestions.length;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const questionIndex = currentQuestion;
-  const question = db.questions[questionIndex];
+  const question = externalQuestions[questionIndex];
+  const bg = externalBg;
 
   function addResult(result) {
     // results.push(result);
@@ -213,7 +231,7 @@ export default function QuizPage() {
   }
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={bg}>
       <QuizContainer>
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
