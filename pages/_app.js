@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
     // Deixa branco no começo
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.contrastText};
   }
   html, body {
     min-height: 100vh;
@@ -25,6 +25,9 @@ const GlobalStyle = createGlobalStyle`
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+   hr{
+    color: #ffffff;
   }
   `;
 

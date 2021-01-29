@@ -21,9 +21,7 @@ function LoadingWidget() {
         Carregando...
       </Widget.Header>
       <Widget.Content>
-        <Widget.Loading>
-          <ClipLoader color={db.theme.colors} size={50} />
-        </Widget.Loading>
+
       </Widget.Content>
     </Widget>
   );

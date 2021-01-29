@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizBackground from '../src/components/QuizBackground';
@@ -50,12 +51,17 @@ export default function Home() {
 
                 return (
                   <li key={linkExterno}>
-                    <Widget.Topic
-                      as={Link}
-                      href={`/quiz/${projectName}___${githubUser}`}
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                     >
-                      {`${githubUser}/${projectName}`}
-                    </Widget.Topic>
+                      <Widget.Topic
+                        as={Link}
+                        href={`/quiz/${projectName}___${githubUser}`}
+                      >
+                        {`${githubUser}/${projectName}`}
+                      </Widget.Topic>
+                    </motion.div>
                   </li>
                 );
               })}

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const Widget = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
-  border: 2px solid ${({ theme }) => theme.colors.primaryLight};
-  background-color: ${({ theme }) => theme.colors.primaryDark};
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.mainBg};
   border-radius: 4px;
   overflow: hidden;
 
@@ -26,7 +26,7 @@ Widget.Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   padding: 18px 32px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.secondary};
   
   * {
     margin: 0;
@@ -58,14 +58,9 @@ Widget.Topic = styled.a`
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: .3s;
   display: block;
-  
-  &:hover,
-  &:focus {
-    opacity: .5;
-  }
 `;
 
-Widget.Loading = styled.div`
+Widget.Animation = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

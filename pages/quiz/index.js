@@ -1,17 +1,18 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import ClipLoader from 'react-spinners/ClipLoader';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-import db from '../../db.json';
+import { motion } from 'framer-motion';
 import Widget from '../../src/components/Widget';
 import QuizBackground from '../../src/components/QuizBackground';
 import QuizContainer from '../../src/components/QuizContainer';
 import Button from '../../src/components/Button';
 import AlternativesForm from '../../src/components/AlternativesForm';
 import BackLinkArrow from '../../src/components/BackLinkArrow';
+import Loading from '../../src/components/Animations/Loading';
+import Goal from '../../src/components/Animations/Goal';
+import db from '../../db.json';
 
 function LoadingWidget() {
   return (
@@ -21,9 +22,9 @@ function LoadingWidget() {
         Carregando...
       </Widget.Header>
       <Widget.Content>
-        <Widget.Loading>
-          <ClipLoader color={db.theme.colors} size={50} />
-        </Widget.Loading>
+        <Widget.Animation>
+          <Loading />
+        </Widget.Animation>
       </Widget.Content>
     </Widget>
   );
@@ -37,34 +38,35 @@ function ResultWidget({ results }) {
       </Widget.Header>
 
       <Widget.Content>
+        <Widget.Animation>
+          <Goal />
+        </Widget.Animation>
         <p>
           Você acertou
           {' '}
-          {/* {results.reduce((somatoriaAtual, resultAtual) => {
-            const isAcerto = resultAtual === true;
-            if (isAcerto) {
-              return somatoriaAtual + 1;
-            }
-            return somatoriaAtual;
-          }, 0)} */}
           {results.filter((x) => x).length}
           {' '}
           pergunta(s)!
         </p>
         <ul>
           {results.map((result, index) => (
-            <li key={`result__${result}`}>
-              <p>
-                {index + 1}
-                ª
-                {' '}
-                questão:
-                {' '}
-                {result === true
-                  ? <CheckIcon />
-                  : <ClearIcon />}
-              </p>
-            </li>
+            <>
+              <li key={`result__${result}`}>
+                <p>
+                  {index + 1}
+                  ª
+                  {' '}
+                  questão:
+                  {' '}
+                  {result === true
+                    ? <CheckIcon />
+                    : <ClearIcon />}
+                </p>
+
+              </li>
+              <hr />
+
+            </>
           ))}
         </ul>
       </Widget.Content>
@@ -73,7 +75,6 @@ function ResultWidget({ results }) {
 }
 
 ResultWidget.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   results: PropTypes.object.isRequired,
 };
 
@@ -133,22 +134,28 @@ function QuestionWidget({
             const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
             const isSelected = selectedAlternative === alternativeIndex;
             return (
-              <Widget.Topic
-                as="label"
-                key={alternativeId}
-                htmlFor={alternativeId}
-                data-selected={isSelected}
-                data-status={isQuestionSubmited && alternativeStatus}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <input
-                  style={{ display: 'none' }}
-                  id={alternativeId}
-                  name={questionId}
-                  onChange={() => setSelectedAlternative(alternativeIndex)}
-                  type="radio"
-                />
-                {alternative}
-              </Widget.Topic>
+                <Widget.Topic
+                  as="label"
+                  key={alternativeId}
+                  htmlFor={alternativeId}
+                  data-selected={isSelected}
+                  data-status={isQuestionSubmited && alternativeStatus}
+                >
+                  <input
+                    style={{ display: 'none' }}
+                    id={alternativeId}
+                    name={questionId}
+                    onClick={() => setSelectedAlternative(alternativeIndex)}
+                    type="radio"
+                  />
+                  {alternative}
+
+                </Widget.Topic>
+              </motion.div>
             );
           })}
 
@@ -159,18 +166,30 @@ function QuestionWidget({
             Confirmar
           </Button>
           {isQuestionSubmited && isCorrect && (
-          <p>
-            Você acertou!
-            <br />
-            <InsertEmoticonIcon />
-          </p>
+          <motion.div
+            animate={{ scale: 1.5 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Widget.Animation>
+              <p>
+                <br />
+                Você acertou!
+              </p>
+            </Widget.Animation>
+          </motion.div>
           )}
           {isQuestionSubmited && !isCorrect && (
-          <p>
-            Você errou!
-            <br />
-            <SentimentVeryDissatisfiedIcon />
-          </p>
+          <motion.div
+            animate={{ scale: 1.5 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Widget.Animation>
+              <p>
+                <br />
+                Você errou!
+              </p>
+            </Widget.Animation>
+          </motion.div>
           )}
         </AlternativesForm>
       </Widget.Content>
@@ -181,7 +200,6 @@ function QuestionWidget({
 QuestionWidget.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   addResult: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   question: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
   totalQuestions: PropTypes.number.isRequired,
@@ -216,7 +234,7 @@ export default function QuizPage() {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 3 * 1000);
   // nasce === didMount
   }, []);
 
