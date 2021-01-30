@@ -29,6 +29,9 @@ const GlobalStyle = createGlobalStyle`
    hr{
     color: #ffffff;
   }
+  *:focus {
+    outline: none;
+  }
   `;
 
 const { theme } = db;
@@ -58,6 +61,7 @@ export default function App({ Component, pageProps }) {
         <meta property="og:image" content={image} />
 
         <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content="@giovdutra" />
         <meta name="twitter:url" content={url} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
