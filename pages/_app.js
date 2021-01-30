@@ -37,7 +37,7 @@ const { theme } = db;
 export default function App({ Component, pageProps }) {
   const title = 'InterQuiz - um quiz sobre o Sport Club Internacional';
   const description = 'Esse quiz foi criado durante a Imersão React da Alura';
-  const image = '/images/inter6.jpg';
+  const image = '/images/inter8.jpg';
   const url = 'https://interquiz.vercel.app/';
 
   return (
@@ -57,11 +57,11 @@ export default function App({ Component, pageProps }) {
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={url} />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={image} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content={url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
       </Head>
 
       <ThemeProvider theme={theme}>
