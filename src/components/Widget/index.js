@@ -66,4 +66,9 @@ Widget.Animation = styled.div`
   align-items: center;
 `;
 
+Widget.Share = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
 export default Widget;

@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import { motion } from 'framer-motion';
+import {
+  TwitterShareButton, TwitterIcon,
+  FacebookShareButton, FacebookIcon,
+  WhatsappIcon, WhatsappShareButton,
+  TelegramIcon, TelegramShareButton,
+} from 'react-share';
 import Widget from '../../src/components/Widget';
 import QuizBackground from '../../src/components/QuizBackground';
 import QuizContainer from '../../src/components/QuizContainer';
@@ -13,6 +19,8 @@ import BackLinkArrow from '../../src/components/BackLinkArrow';
 import Loading from '../../src/components/Animations/Loading';
 import Goal from '../../src/components/Animations/Goal';
 import db from '../../db.json';
+import Success from '../../src/components/Animations/Success';
+import Wrong from '../../src/components/Animations/Wrong';
 
 function LoadingWidget() {
   return (
@@ -30,7 +38,11 @@ function LoadingWidget() {
   );
 }
 
-function ResultWidget({ results }) {
+function ResultWidget({ results, totalQuestions }) {
+  const acertos = results.filter((x) => x).length;
+  const shareUrl = 'https://interquiz.giovanaandrade.vercel.app/';
+  const quote = `Acertei ${acertos} perguntas de ${totalQuestions} no InterQuiz. Tente você também!`;
+
   return (
     <Widget>
       <Widget.Header>
@@ -44,10 +56,30 @@ function ResultWidget({ results }) {
         <p>
           Você acertou
           {' '}
-          {results.filter((x) => x).length}
+          {acertos}
           {' '}
           pergunta(s)!
         </p>
+        <p>Compartilhe o quiz com seus amigos!</p>
+        <Widget.Share>
+
+          <TwitterShareButton url={shareUrl} title={quote}>
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
+
+          <FacebookShareButton url={shareUrl} quote={quote}>
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+
+          <WhatsappShareButton url={shareUrl} quote={quote}>
+            <WhatsappIcon size={32} round />
+          </WhatsappShareButton>
+
+          <TelegramShareButton url={shareUrl} quote={quote}>
+            <TelegramIcon size={32} round />
+          </TelegramShareButton>
+
+        </Widget.Share>
         <ul>
           {results.map((result, index) => (
             <>
@@ -76,6 +108,7 @@ function ResultWidget({ results }) {
 
 ResultWidget.propTypes = {
   results: PropTypes.object.isRequired,
+  totalQuestions: PropTypes.number.isRequired,
 };
 
 function QuestionWidget({
@@ -166,17 +199,20 @@ function QuestionWidget({
             Confirmar
           </Button>
           {isQuestionSubmited && isCorrect && (
-          <motion.div
-            animate={{ scale: 1.5 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Widget.Animation>
-              <p>
-                <br />
-                Você acertou!
-              </p>
-            </Widget.Animation>
-          </motion.div>
+            <>
+              <motion.div
+                animate={{ scale: 1.5 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Widget.Animation>
+                  <p>
+                    <br />
+                    Você acertou!
+                    <Success />
+                  </p>
+                </Widget.Animation>
+              </motion.div>
+            </>
           )}
           {isQuestionSubmited && !isCorrect && (
           <motion.div
@@ -187,6 +223,7 @@ function QuestionWidget({
               <p>
                 <br />
                 Você errou!
+                <Wrong />
               </p>
             </Widget.Animation>
           </motion.div>
@@ -213,10 +250,10 @@ const screenStates = {
 export default function QuizPage() {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
-  const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
+  const totalQuestions = db.questions.length;
 
   function addResult(result) {
     // results.push(result);
@@ -262,7 +299,8 @@ export default function QuizPage() {
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
+        {screenState === screenStates.RESULT
+        && <ResultWidget results={results} totalQuestions={totalQuestions} />}
       </QuizContainer>
     </QuizBackground>
   );

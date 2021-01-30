@@ -1,45 +1,51 @@
 {
-    "bg": "/images/inter1.jpg",
+    "bg": "/images/background.jpg",
     "title": "InterQuiz",
     "description": "Um quiz sobre o Sport Club Internacional",
     "questions": [
       {
-        "image": "https://media.giphy.com/media/j5P0DQIOf4PonLi55G/giphy.gif",
-        "title": "Qual a diferença entre = , == e === ?",
-        "description": "Pergunta fácil em!",
+        "image": "https://media.internacional.groundsportech.com/wp-content/uploads/2020/02/11163657/11988487_1705338373019074_8383748995967955225_n-1.jpg",
+        "title": "Em qual ano o Internacional foi fundado?",
+        "description": "Pergunta fácil para iniciar!",
         "answer": 1,
         "alternatives": [
-          "São a mesma coisa",
-          "O = significa atribuição de valor. Já == verifica a igualdade do valor, enquanto === verifica valor e tipo de variável."
+          "1903",
+          "1909",
+          "1906",
+          "1919"
         ]
       },
       {
-        "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
-        "title": "Qual a diferença de window e global?",
-        "answer": 1,
+        "image": "https://www.campeoesdofutebol.com.br/poster/inter_campeao_brasileiro_1979.jpg",
+        "title": "Quem era o técnico no ano em que o Inter ganhou o primeiro título do Campeonato Brasileiro?",
+        "answer": 2,
         "alternatives": [
-          "São a mesma coisa",
-          "window é o escopo global no browser, e global no node"
+          "Ênio Andrade",
+          "Cláudio Duarte",
+          "Rubens Minelli",
+          "Daltro Menezes"
         ]
       },
       {
-        "image": "https://media.giphy.com/media/Ie2Hs3A0uJRtK/giphy.gif",
-        "title": "Que tipos de dados são suportados em JavaScript?",
-        "description": "E agora? Você sabe?",
-        "answer": 0,
+        "image": "https://media.giphy.com/media/26u8zjhM87ZpbwOkg/giphy.gif",
+        "title": "O Inter foi o primeiro clube brasileiro a ganhar a Copa Sul-Americana. Quais foram os jogadores que marcaram nos dois jogos da final?",
+        "answer": 3,
         "alternatives": [
-          "Number, String, Undefined, Null e Bool.",
-          "Int, String, Undefined, Null e Bool."
+          "Nilmar e Índio",
+          "D'Alessandro e Índio",
+          "Alex e D'Alessandro",
+          "Alex e Nilmar"
         ]
       },
       {
-        "image": "https://media.giphy.com/media/iI4vhciiVh2b3j9sgo/giphy.gif",
-        "title": "Qual a forma antiga de trabalhar com AJAX na Web?",
-        "answer": 1,
+        "image": "https://media.giphy.com/media/fLp7sv0ja1gqPsMbDb/giphy.gif",
+        "title": "Em qual posição o Inter terminou no Campeonato Brasileiro no ano em que conquistou a sua segunda Copa Libertadores?",
+        "answer": 2,
         "alternatives": [
-          "JSONHttpRequest",
-          "XMLHttpRequest",
-          "fetch"
+          "2º",
+          "5º",
+          "7º",
+          "8º"
         ]
       }
     ],
