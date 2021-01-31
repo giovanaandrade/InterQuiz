@@ -24,6 +24,10 @@ export default function Home() {
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
+            <p>
+              Você está pronto(a) para testar seus
+              conhecimentos sobre o Sport Club Internacional?
+            </p>
             <form onSubmit={(e) => {
               e.preventDefault();
               router.push(`/quiz?name=${name}`);
@@ -32,7 +36,7 @@ export default function Home() {
               <Input
                 name="nomeDoUsuario"
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Escreva seu nome"
+                placeholder="Digite seu nome"
                 value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
@@ -44,7 +48,7 @@ export default function Home() {
 
         <Widget>
           <Widget.Content>
-            <h1>Quizes da Galera</h1>
+            <h1>Outros quizes sobre futebol</h1>
             <ul>
               {db.external.map((linkExterno) => {
                 const [projectName, githubUser] = linkExterno.replace('https://', '').replace('.vercel.app/', '').split('.');

@@ -10,6 +10,7 @@ import {
   WhatsappIcon, WhatsappShareButton,
   TelegramIcon, TelegramShareButton,
 } from 'react-share';
+import { useRouter } from 'next/router';
 import Widget from '../../src/components/Widget';
 import QuizBackground from '../../src/components/QuizBackground';
 import QuizContainer from '../../src/components/QuizContainer';
@@ -42,6 +43,8 @@ function ResultWidget({ results, totalQuestions }) {
   const acertos = results.filter((x) => x).length;
   const shareUrl = 'https://interquiz.giovanaandrade.vercel.app/';
   const quote = `Acertei ${acertos} perguntas de ${totalQuestions} no InterQuiz. Tente você também!`;
+  const router = useRouter();
+  const { name } = router.query;
 
   return (
     <Widget>
@@ -54,13 +57,9 @@ function ResultWidget({ results, totalQuestions }) {
           <Goal />
         </Widget.Animation>
         <p>
-          Você acertou
-          {' '}
-          {acertos}
-          {' '}
-          pergunta(s)!
+          {`${name}, você acertou ${acertos} pergunta(s)!`}
         </p>
-        <p>Compartilhe o quiz com seus amigos!</p>
+        <p>Compartilhe o quiz com a galera!</p>
         <Widget.Share>
           <motion.div
             whileHover={{ scale: 1.5 }}
