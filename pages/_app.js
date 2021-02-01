@@ -11,11 +11,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* New styles */
     display: flex;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
-    // Deixa branco no começo
     color: ${({ theme }) => theme.colors.contrastText};
   }
   html, body {

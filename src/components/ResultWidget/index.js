@@ -23,7 +23,7 @@ export default function ResultWidget({ results, totalQuestions, name }) {
           <Goal />
         </Widget.Animation>
         <p>
-          {`${name}, você acertou ${acertos} pergunta(s)!`}
+          {`${name[0].toUpperCase() + name.slice(1).toLowerCase()}, você acertou ${acertos} pergunta(s)!`}
         </p>
         <p>Compartilhe o quiz com a galera!</p>
         <Widget.Share>
