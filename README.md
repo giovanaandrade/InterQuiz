@@ -2,6 +2,7 @@
 
 <h1>InterQuiz</h1>
 <p>Projeto criado durante a Imersão React da Alura</p>
+<a href="https://github.com/alura-challenges/aluraquiz-base">Projeto base</a>
 
 <h2>Tecnologias</h2>
 <p>
