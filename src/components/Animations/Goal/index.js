@@ -16,7 +16,7 @@ export default function Goal() {
         height={200}
         width={200}
       />
-
     </div>
+
   );
 }

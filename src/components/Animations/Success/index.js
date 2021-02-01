@@ -16,7 +16,6 @@ export default function Success() {
         height={50}
         width={50}
       />
-
     </div>
   );
 }
